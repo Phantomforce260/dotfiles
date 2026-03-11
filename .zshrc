@@ -1,10 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# =================================================================================================
+# ZSHRC
+# =================================================================================================
 
 export ZSH="$HOME/.oh-my-zsh"
 
-#ZSH_THEME="agnosterzak"
 ZSH_THEME="xiong-chiamiov-plus"
+# Honorable Mentions:
+#     - agnosterzak
 
 plugins=( 
     git
@@ -15,14 +17,24 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 PROMPT_EOL_MARK=''
 
-# Display Pokemon-colorscripts
-# Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
-#pokemon-colorscripts --no-title -s -r
+# =================================================================================================
+# Pokemon Colorscripts
+# =================================================================================================
 
+# Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
+
+# Display a random shiny pokemon
 { pokemon-colorscripts --no-title -s -r } </dev/null
 
-# fastfetch. Will be disabled if above colorscript was chosen to install
+# =================================================================================================
+# fastfetch
+# =================================================================================================
+
 # fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
+
+# =================================================================================================
+# LS
+# =================================================================================================
 
 # Set-up icons for files/directories in terminal using lsd
 alias ls='lsd'
@@ -31,20 +43,31 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
-# bun completions
+# =================================================================================================
+# Bun
+# =================================================================================================
+
 [ -s "/home/adrian/.bun/_bun" ] && source "/home/adrian/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# =================================================================================================
+# Custom PATHs
+# =================================================================================================
+
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/Documents/Github/Phantom/git-tools"
 
 eval "$(zoxide init zsh)"
+
+# =================================================================================================
+# Aliases
+# =================================================================================================
+
 alias cd="z"
 
-# Stuff I Made ----------------------------------------------------------------------------------------------
 alias ssh="kitty +kitten ssh"
 
 alias zshrc="nvim ~/.zshrc && clear && source ~/.zshrc"
@@ -61,8 +84,19 @@ alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
 alias ssh-home="ssh -p 51820 adrian@ssh.local.lunarflame.dev"
 
-# Custom Scripts ---------------------------------------------------------------------------------------------
+alias weather="$HOME/.config/hypr/shell/user/Weather.sh"
+
 alias php-dev-lfs="$HOME/Documents/Projects/shell/php_dev_lfs.sh"
+
+alias edex="$HOME/Documents/AppImages/edex.AppImage --no-sandbox"
+alias prism="$HOME/Documents/AppImages/prism.AppImage & disown"
+
+alias intellij="$HOME/.intellij/bin/idea & disown"
+alias update-hwmon="bun ~/Documents/Gitea/Configs/Waybar/js/build.js"
+
+# =================================================================================================
+# Custom Scripts
+# =================================================================================================
 
 # WPI stuff
 
@@ -86,7 +120,7 @@ scp-wpi() {
     fi
 }
 
-# Safe RM -----------------------------------------------------------------------------------------------------
+# Safe RM
 
 safe_rm() {
     local trash_dir="$HOME/.local/share/Trash/files"
@@ -117,7 +151,7 @@ safe_rm() {
         esac
     done
 
-    # Now move the actual files/directories
+    # Move the actual files/directories
     for item in "${items[@]}"; do
         if [ -e "$item" ]; then
             mv "$item" "$trash_dir/$(basename "$item")_$timestamp"
@@ -171,7 +205,6 @@ empty-trash() {
 }
 
 update-discord() {
-
     deb_file=$(find "$HOME/Downloads" -maxdepth 1 -type f -name "discord-*.deb" | head -n 1)
 
     if [ -z "$deb_file" ]; then
@@ -191,22 +224,3 @@ update-discord() {
         return 1
     fi
 }
-
-monitors() {
-    if [ -z "$1" ]; then
-        echo "Missing argument: monitors <mirror | extend>"
-        return 1
-    fi
-
-    if [[ "$1" == "mirror" ]]; then
-        python3 $HOME/Documents/Projects/python/monitors.py mirror
-    elif [[ "$1" == "extend" ]]; then
-        python3 $HOME/Documents/Projects/python/monitors.py extend
-    fi
-}
-
-alias edex="$HOME/Documents/AppImages/edex.AppImage --no-sandbox"
-alias prism="$HOME/Documents/AppImages/prism.AppImage & disown"
-
-alias intellij="$HOME/.intellij/bin/idea & disown"
-alias update-hwmon="bun ~/Documents/Gitea/Configs/Waybar/js/build.js"

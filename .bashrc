@@ -1,3 +1,7 @@
+# =================================================================================================
+# BASHRC
+# =================================================================================================
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -40,72 +44,14 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
+# Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -115,7 +61,94 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-. "$HOME/.cargo/env"
 
-# Added by git-tools
-export PATH="/home/adrian/Documents/Github/Phantom/git-tools:$PATH"
+# =================================================================================================
+# Aliases
+# =================================================================================================
+
+alias cl='clear'
+alias ff='fastfetch'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias py='python3'
+alias bashrc='vim ~/.bashrc && source ~/.bashrc'
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Enable color support for ls
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# =================================================================================================
+# Bash Prompt
+# =================================================================================================
+
+# Uncomment for a colored prompt, if the terminal has the capability; turned off by default.
+force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
+fi
+
+# Colors from https://ansicolor.com/
+
+WHITE="\[\e[38;5;255m\]"
+GRAY="\[\e[38;5;244m\]"
+RESET="\[\e[0m\]"
+
+BAMBOO="\[\e[38;2;255;44;109m\]"
+SPROUT="\[\e[38;2;25;249;216m\]"
+HONEY="\[\e[38;2;255;184;108m\]"
+BLUSH="\[\e[38;2;255;117;181m\]"
+SKY="\[\e[38;2;69;169;249m\]"
+
+# Powerline separator
+SEP="${BAMBOO}"
+SEP_NO_COL=""
+
+est_time() {
+    TZ="America/New_York" date "+%a %b %d, %H:%M"
+}
+
+git_branch() {
+    # Default output
+    local output="<>"
+
+    # Only if we're in a git repo
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        local branch
+        branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+
+        # Check for unstaged/staged changes
+        if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
+            branch="${branch}*"   # add asterisk if changes exist
+        fi
+
+        output="<git:(${branch})>"
+    fi
+
+    echo "${output}"
+}
+
+if [ "$color_prompt" = yes ]; then
+    PS1="${BAMBOO}┌─${HONEY}\u${WHITE}@\h ${SEP} ${SKY}\w ${SEP} ${BLUSH}\$(est_time) ${SEP}\n${BAMBOO}└─[${SPROUT}\$${BAMBOO}] ${SPROUT}\$(git_branch) ${RESET}"
+else
+    PS1="┌─\u@\h ${SEP_NO_COL} \w ${SEP_NO_COL} \$(est_time) ${SEP_NO_COL}\n└─[\$] \$(git_branch)"
+fi
+
+unset color_prompt force_color_prompt
