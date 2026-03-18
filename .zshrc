@@ -73,16 +73,25 @@ alias ssh="kitty +kitten ssh"
 alias zshrc="nvim ~/.zshrc && clear && source ~/.zshrc"
 
 alias cl="clear && exec zsh"
-alias ff="fastfetch"
-alias neofetch="fastfetch"
 
-alias enable-wg="sudo wg-quick up adris-laptop"
-alias disable-wg="sudo wg-quick down adris-laptop"
+pkmn_cache() {
+    { pokemon-colorscripts --no-title -s -r } </dev/null > ~/.config/fastfetch/pkmn-cache.txt
+    command fastfetch "$@"
+}
+
+alias fastfetch=pkmn_cache
+alias ff=pkmn_cache
+alias neofetch=pkmn_cache
+
+alias whereami="curl ifconfig.me"
+
+alias enable-wg="sudo wg-quick up adri-linux"
+alias disable-wg="sudo wg-quick down adri-linux"
 
 alias py="python3"
 alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
-alias ssh-home="ssh -p 51820 adrian@ssh.local.lunarflame.dev"
+alias ssh-home="ssh -p 2222 adrian@ssh.local.lunarflame.dev"
 
 alias weather="$HOME/.config/hypr/shell/user/Weather.sh"
 
@@ -92,7 +101,7 @@ alias edex="$HOME/Documents/AppImages/edex.AppImage --no-sandbox"
 alias prism="$HOME/Documents/AppImages/prism.AppImage & disown"
 
 alias intellij="$HOME/.intellij/bin/idea & disown"
-alias update-hwmon="bun ~/Documents/Gitea/Configs/Waybar/js/build.js"
+alias update-hwmon="bun $HOME/.config/waybar/js/build.js"
 
 # =================================================================================================
 # Custom Scripts
