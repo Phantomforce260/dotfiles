@@ -63,6 +63,12 @@ if ! shopt -oq posix; then
 fi
 
 # =================================================================================================
+# Custom PATHs
+# =================================================================================================
+
+export PATH="$PATH:$HOME/.local/bin"
+
+# =================================================================================================
 # Aliases
 # =================================================================================================
 
@@ -71,11 +77,13 @@ alias ff='fastfetch'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 alias py='python3'
-alias bashrc='vim ~/.bashrc && source ~/.bashrc'
+alias bashrc='vim ~/Dotfiles/.bashrc && source ~/.bashrc'
 
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+alias lzd='lazydocker'
 
 # Enable color support for ls
 if [ -x /usr/bin/dircolors ]; then
