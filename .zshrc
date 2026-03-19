@@ -6,12 +6,35 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="xiong-chiamiov-plus"
 # Honorable Mentions:
-#     - agnosterzak
+#   - agnosterzak
+
+COLORIZE_STYLES=(
+    "one-dark"
+    "gruvbox-dark"
+    "nord"
+    "material"
+    "dracula"
+    "github-dark"
+)
+
+# Supports all pygment styles. Check with:
+# 
+# pygmentize -L styles
+ZSH_COLORIZE_STYLE="${COLORIZE_STYLES[$(( RANDOM % ${#COLORIZE_STYLES[@]} ))]}"
 
 plugins=( 
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
+
+    # Shortcuts for docker compose
+    docker-compose
+
+    # Syntax highlighting in the terminal
+    colorize
+
+    # Show color for man pages
+    colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -67,6 +90,7 @@ eval "$(zoxide init zsh)"
 # =================================================================================================
 
 alias cd="z"
+alias cat="ccat"
 
 alias ssh="kitty +kitten ssh"
 
@@ -83,7 +107,7 @@ alias fastfetch=pkmn_cache
 alias ff=pkmn_cache
 alias neofetch=pkmn_cache
 
-alias whereami="curl ifconfig.me"
+alias whereami="curl ipinfo.io"
 
 alias enable-wg="sudo wg-quick up adri-linux"
 alias disable-wg="sudo wg-quick down adri-linux"
