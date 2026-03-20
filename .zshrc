@@ -22,19 +22,32 @@ COLORIZE_STYLES=(
 # pygmentize -L styles
 ZSH_COLORIZE_STYLE="${COLORIZE_STYLES[$(( RANDOM % ${#COLORIZE_STYLES[@]} ))]}"
 
-plugins=( 
+plugins=(
+    # Shortcuts for git controls.
     git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
 
-    # Shortcuts for docker compose
+    # Shortcuts for docker compose.
     docker-compose
 
-    # Syntax highlighting in the terminal
+    # Prepend sudo to a command by pressing <Esc> twice.
+    sudo
+
+    # Syntax highlighting in the terminal.
     colorize
 
-    # Show color for man pages
+    # Show color for man pages.
     colored-man-pages
+
+    # Interactive menu for changing directories.
+    zsh-interactive-cd
+
+    # External Plugins
+
+    # Suggests commands based on history.
+    zsh-autosuggestions
+
+    # Highlights commands .
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -81,7 +94,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # =================================================================================================
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export PATH="$PATH:$HOME/Documents/Github/Phantom/git-tools"
+export PATH="$PATH:$HOME/.config/git-tools"
 
 eval "$(zoxide init zsh)"
 
@@ -121,8 +134,10 @@ alias weather="$HOME/.config/hypr/shell/user/Weather.sh"
 
 alias php-dev-lfs="$HOME/Documents/Projects/shell/php_dev_lfs.sh"
 
-alias edex="$HOME/Documents/AppImages/edex.AppImage --no-sandbox"
-alias prism="$HOME/Documents/AppImages/prism.AppImage & disown"
+APP_IMAGES="$HOME/Documents/AppImages"
+
+alias edex="$APP_IMAGES/edex.AppImage --no-sandbox"
+alias prism="$APP_IMAGES/prism.AppImage & disown"
 
 alias intellij="$HOME/.intellij/bin/idea & disown"
 alias update-hwmon="bun $HOME/.config/waybar/js/build.js"
