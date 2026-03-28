@@ -90,13 +90,47 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # =================================================================================================
+# Node
+# =================================================================================================
+
+lazy_load_nvm() {
+    unset -f node npm npx nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+node() {
+    lazy_load_nvm
+    node "$@"
+}
+
+npm() {
+    lazy_load_nvm
+    npm "$@"
+}
+
+npx() {
+    lazy_load_nvm
+    npx "$@"
+}
+
+nvm() {
+    lazy_load_nvm
+    nvm "$@"
+}
+# =================================================================================================
 # Custom PATHs
 # =================================================================================================
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export PATH="$PATH:$HOME/.config/git-tools"
+export PATH="$PATH:$HOME/.config/git-tools/bash"
 
 eval "$(zoxide init zsh)"
+
+# opencode
+export PATH=/home/adrian/.opencode/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
 
 # =================================================================================================
 # Aliases
