@@ -1,3 +1,5 @@
+export CONFIG="$HOME/.config"
+
 # =================================================================================================
 # ZSHRC
 # =================================================================================================
@@ -83,9 +85,8 @@ alias lt='ls --tree'
 # Bun
 # =================================================================================================
 
-[ -s "/home/adrian/.bun/_bun" ] && source "/home/adrian/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
@@ -93,9 +94,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Node
 # =================================================================================================
 
+export NVM_DIR="$HOME/.nvm"
+
 lazy_load_nvm() {
-    unset -f node npm npx nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    if command -v node >/dev/null 2>&1 && [[ "$PATH" == *"$NVM_DIR"* ]]; then
+        return
+    fi
+
+    unset -f node npm npx nvm 2>/dev/null || true
+
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 }
 
@@ -118,19 +126,23 @@ nvm() {
     lazy_load_nvm
     nvm "$@"
 }
+
+nvim() {
+    lazy_load_nvm
+    command nvim "$@"
+}
+
 # =================================================================================================
 # Custom PATHs
 # =================================================================================================
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export PATH="$PATH:$HOME/.config/git-tools/bash"
+export PATH="$PATH:$CONFIG/git-tools/bash"
 
 eval "$(zoxide init zsh)"
 
 # opencode
-export PATH=/home/adrian/.opencode/bin:$PATH
-
-export NVM_DIR="$HOME/.nvm"
+export PATH=$HOME/.opencode/bin:$PATH
 
 # =================================================================================================
 # Aliases
@@ -164,9 +176,7 @@ alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
 alias ssh-home="ssh -p 2222 adrian@ssh.local.lunarflame.dev"
 
-alias weather="$HOME/.config/hypr/shell/user/Weather.sh"
-
-alias php-dev-lfs="$HOME/Documents/Projects/shell/php_dev_lfs.sh"
+alias weather="$CONFIG/hypr/shell/user/Weather.sh"
 
 APP_IMAGES="$HOME/Documents/AppImages"
 
@@ -174,7 +184,7 @@ alias edex="$APP_IMAGES/edex.AppImage --no-sandbox"
 alias prism="$APP_IMAGES/prism.AppImage & disown"
 
 alias intellij="$HOME/.intellij/bin/idea & disown"
-alias update-hwmon="bun $HOME/.config/waybar/js/build.js"
+alias update-hwmon="bun $CONFIG/waybar/js/build.js"
 
 # =================================================================================================
 # Custom Scripts

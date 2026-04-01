@@ -72,8 +72,10 @@ export PATH="$PATH:$HOME/.local/bin"
 # Aliases
 # =================================================================================================
 
-alias cl='clear'
 alias ff='fastfetch'
+alias neofetch='fastfetch'
+
+alias cl='clear'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 alias py='python3'
