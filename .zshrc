@@ -109,22 +109,22 @@ lazy_load_nvm() {
 
 node() {
     lazy_load_nvm
-    node "$@"
+    command node "$@"
 }
 
 npm() {
     lazy_load_nvm
-    npm "$@"
+    command npm "$@"
 }
 
 npx() {
     lazy_load_nvm
-    npx "$@"
+    command npx "$@"
 }
 
 nvm() {
     lazy_load_nvm
-    nvm "$@"
+    command nvm "$@"
 }
 
 nvim() {
@@ -150,6 +150,8 @@ export PATH=$HOME/.opencode/bin:$PATH
 
 alias cd="z"
 alias cat="ccat"
+
+alias uz="unzip"
 
 alias ssh="kitty +kitten ssh"
 
