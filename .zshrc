@@ -25,12 +25,6 @@ COLORIZE_STYLES=(
 ZSH_COLORIZE_STYLE="${COLORIZE_STYLES[$(( RANDOM % ${#COLORIZE_STYLES[@]} ))]}"
 
 plugins=(
-    # Shortcuts for git controls.
-    git
-
-    # Shortcuts for docker compose.
-    docker-compose
-
     # Prepend sudo to a command by pressing <Esc> twice.
     sudo
 
@@ -144,6 +138,16 @@ eval "$(zoxide init zsh)"
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
 
+rustup() {
+    source "$HOME/.cargo/env"
+    command rustup "$@"
+}
+
+cargo() {
+    source "$HOME/.cargo/env"
+    command cargo "$@"
+}
+
 # =================================================================================================
 # Aliases
 # =================================================================================================
@@ -176,7 +180,9 @@ alias disable-wg="sudo wg-quick down adri-linux"
 alias py="python3"
 alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
+
 alias ssh-home="ssh -p 2222 adrian@ssh.local.lunarflame.dev"
+alias ssh-lunar="ssh adrian@lunarflame.dev"
 
 alias weather="$CONFIG/hypr/shell/user/Weather.sh"
 
@@ -191,28 +197,6 @@ alias update-hwmon="bun $CONFIG/waybar/js/build.js"
 # =================================================================================================
 # Custom Scripts
 # =================================================================================================
-
-# WPI stuff
-
-alias ssh-wpi="ssh -i ~/.ssh/student-cs2011 -p 9308 student@secnet-gateway.cs.wpi.edu"
-scp-wpi() {
-    vm_addr="student@secnet-gateway.cs.wpi.edu:/home/student/Downloads"
-
-    if [ -z "$1" ]; then
-        echo "Incorrect Format."
-        echo "Correct Usage: scp-wpi <to/from> <file>"
-        return 1
-    elif [ -z "$2" ]; then
-        echo "No file specified for copy"
-        return 1
-    elif [[ "$1" == "to" ]]; then
-        scp -i ~/.ssh/student-cs2011 -P 9308 "$2" "$vm_addr"
-    elif [[ "$1" == "from" ]]; then
-        scp -i ~/.ssh/student-cs2011 -P 9308 $vm_addr/$2 $HOME/Downloads
-    else
-        echo "Error."
-    fi
-}
 
 # Safe RM
 
