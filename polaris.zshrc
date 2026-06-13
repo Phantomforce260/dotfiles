@@ -1,5 +1,9 @@
 export CONFIG="$HOME/.config"
 
+# Source common aliases/config shared with bash
+COMMON_DIR="${0:A:h}"
+[ -f "$COMMON_DIR/shell_common" ] && . "$COMMON_DIR/shell_common"
+
 # =================================================================================================
 # ZSHRC
 # =================================================================================================
@@ -70,8 +74,6 @@ PROMPT_EOL_MARK=''
 
 # Set-up icons for files/directories in terminal using lsd
 alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
@@ -131,7 +133,6 @@ nvim() {
 # =================================================================================================
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export PATH="$PATH:$CONFIG/git-tools/bash"
 
 eval "$(zoxide init zsh)"
 
@@ -155,8 +156,6 @@ cargo() {
 alias cd="z"
 alias cat="ccat"
 
-alias uz="unzip"
-
 alias ssh="kitty +kitten ssh"
 
 alias zshrc="nvim ~/.zshrc && clear && source ~/.zshrc"
@@ -172,17 +171,14 @@ alias fastfetch=pkmn_cache
 alias ff=pkmn_cache
 alias neofetch=pkmn_cache
 
-alias whereami="curl ipinfo.io"
+alias enable-wg="sudo wg-quick up polaris"
+alias disable-wg="sudo wg-quick down polaris"
 
-alias enable-wg="sudo wg-quick up adri-linux"
-alias disable-wg="sudo wg-quick down adri-linux"
-
-alias py="python3"
 alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
 
 alias ssh-home="ssh -p 2222 adrian@ssh.local.lunarflame.dev"
-alias ssh-lunar="ssh adrian@lunarflame.dev"
+alias ssh-web="ssh adrian@lunarflame.dev"
 
 alias weather="$CONFIG/hypr/shell/user/Weather.sh"
 
@@ -199,7 +195,6 @@ alias update-hwmon="bun $CONFIG/waybar/js/build.js"
 # =================================================================================================
 
 # Safe RM
-
 safe_rm() {
     local trash_dir="$HOME/.local/share/Trash/files"
     mkdir -p "$trash_dir"
