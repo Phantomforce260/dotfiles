@@ -9,11 +9,9 @@ case $- in
 esac
 
 # Source common aliases/config shared with zsh
-COMMON_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-[ -f "$COMMON_DIR/shell_common" ] && . "$COMMON_DIR/shell_common"
-
-# Source common bash config
-[ -f "$COMMON_DIR/bash_common" ] && . "$COMMON_DIR/bash_common"
+export DOTFILES_DIR="$HOME/Documents/dotfiles"
+source "$DOTFILES_DIR/shell_common"
+source "$DOTFILES_DIR/bash_common"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
