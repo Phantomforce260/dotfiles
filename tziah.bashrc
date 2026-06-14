@@ -9,7 +9,7 @@ case $- in
 esac
 
 # Source common aliases/config shared with zsh
-COMMON_DIR="~/.config/dotfiles"
+COMMON_DIR="$HOME/.config/dotfiles"
 source "$COMMON_DIR/shell_common"
 source "$COMMON_DIR/bash_common"
 
