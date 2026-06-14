@@ -1,7 +1,7 @@
 export CONFIG="$HOME/.config"
 
 # Source common aliases/config shared with bash
-COMMON_DIR="${0:A:h}"
+COMMON_DIR="$CONFIG/dotfiles"
 [ -f "$COMMON_DIR/shell_common" ] && . "$COMMON_DIR/shell_common"
 
 # =================================================================================================
