@@ -297,3 +297,7 @@ update-discord() {
         return 1
     fi
 }
+
+fork() {
+    kitten @ launch --type=tab --cwd=current
+}
