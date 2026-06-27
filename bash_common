@@ -87,9 +87,10 @@ git_branch() {
 
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         local branch
+
         branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
 
-        if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
+        if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
             branch="${branch}*"
         fi
 
