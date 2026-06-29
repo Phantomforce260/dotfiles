@@ -33,7 +33,11 @@ fi
 # Bash Prompt
 # =================================================================================================
 
-PS1=$'\[\e[32m\]\u@\h\[\e[0m\] \[\e[2m\]│\[\e[0m\] \
-\[\e[34m\]\w\[\e[0m\] \[\e[2m\]│\[\e[0m\] \
-\[\e[33m\]$(est_time)\[\e[0m\]\n\
-\[\e[35m\]$(git_branch)\[\e[0m\] \$ '
+GREEN="\[\e[32m\]"
+DIM="\[\e[2m\]"
+BLUE="\[\e[34m\]"
+YELLOW="\[\e[33m\]"
+MAGENTA="\[\e[35m\]"
+RESET="\[\e[0m\]"
+
+PS1="${GREEN}\u@\h${RESET} ${DIM}│${RESET} ${BLUE}\w${RESET} ${DIM}│${RESET} ${YELLOW}\$(est_time)${RESET} ${DIM}│${RESET}\n${MAGENTA}\$(git_branch)${RESET} \$ "
