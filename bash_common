@@ -45,6 +45,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.config/git-tools/bash"
 
+export DNS_SERVER=192.168.1.6
+export LF_GIT=git.lunarflame.dev/docker
+
 # =================================================================================================
 # Aliases
 # =================================================================================================
