@@ -2,6 +2,9 @@
 # Common aliases & config sourced by both zsh and bash
 # =================================================================================================
 
+export DNS_SERVER=192.168.1.6
+export LF_GIT=git.lunarflame.dev/docker
+
 alias whereami="curl ipinfo.io"
 
 # Docker
