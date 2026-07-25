@@ -9,3 +9,9 @@
 	email = aakeem0920@gmail.com
 [init]
 	defaultBranch = main
+[url "https://github.com/"]
+	insteadOf = gh:
+[url "https://github.com/Phantomforce260/"]
+	insteadOf = phantom:
+[url "ssh://git@ssh.git.lunarflame.dev:2222/"]
+	insteadOf = lfs:

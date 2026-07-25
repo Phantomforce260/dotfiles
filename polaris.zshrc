@@ -177,9 +177,6 @@ alias disable-wg="sudo wg-quick down polaris"
 alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
 
-alias ssh-home="ssh -p 2222 adrian@ssh.local.lunarflame.dev"
-alias ssh-web="ssh adrian@lunarflame.dev"
-
 alias weather="$CONFIG/hypr/shell/user/Weather.sh"
 
 APP_IMAGES="$HOME/Documents/AppImages"
@@ -275,27 +272,6 @@ empty-trash() {
             echo "Canceled."
             ;;
     esac
-}
-
-update-discord() {
-    deb_file=$(find "$HOME/Downloads" -maxdepth 1 -type f -name "discord-*.deb" | head -n 1)
-
-    if [ -z "$deb_file" ]; then
-        echo "No discord .deb package found in ~/Downloads"
-        return 1
-    fi
-
-    echo "Installing $deb_file..."
-    sudo dpkg -i "$deb_file"
-
-    # If install succeeded, remove the file
-    if [ $? -eq 0 ]; then
-        echo "Removing $deb_file..."
-        rm "$deb_file"
-    else
-        echo "Installation failed. Keeping the .deb file."
-        return 1
-    fi
 }
 
 fork() {

@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+        *) return;;
 esac
 
 # Source common aliases/config shared with zsh
@@ -57,12 +57,3 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# =================================================================================================
-# Aliases
-# =================================================================================================
-
-ssh-home() {
-    echo "ssh from 'spirit'."
-    ssh adrian@192.168.1.6
-}
