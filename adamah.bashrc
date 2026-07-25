@@ -1,5 +1,5 @@
 # =================================================================================================
-# SPIRIT
+# ADAMAH
 # =================================================================================================
 
 # If not running interactively, don't do anything
@@ -16,7 +16,7 @@ COMMON_DIR="$HOME/.config/dotfiles"
 [ -f "$COMMON_DIR/bash_common" ] && . "$COMMON_DIR/bash_common"
 
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -28,45 +28,26 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
-[[ -f /opt/vultr/vultr_app.sh ]] && . /opt/vultr/vultr_app.sh
 
 # =================================================================================================
 # Bash Prompt
 # =================================================================================================
 
-# Colors from https://ansicolor.com/
+# From https://coolors.co/palette/8e9aaf-c0c7d3-d2ddef-eaf2ff-ddeaff
 
-# Colors from https://ansicolor.com/
+# Lavender Grey
+PROMPT_FG="\[\e[38;2;142;154;175m\]"
 
-# Bamboo
-PROMPT_FG="\[\e[38;2;255;44;109m\]"
-# Sprout
-PROMPT_USER="\[\e[38;2;255;184;108m\]"
-# Honey
-PROMPT_DIR="\[\e[38;2;69;169;249m\]"
-# Blush
-PROMPT_TIME="\[\e[38;2;255;117;181m\]"
-# Sky
-PROMPT_ARROW="\[\e[38;2;25;249;216m\]"
+# Pale Slate
+PROMPT_USER="\[\e[38;2;192;199;211m\]"
 
-# Hot Red
-#PROMPT_FG="\[\e[38;2;254;68;80m\]"
-# Neon Blue
-#PROMPT_USER="\[\e[38;2;255;139;58m\]"
-# Sunset
-#PROMPT_DIR="\[\e[38;2;114;241;184m\]"
-# Laser Pink
-#PROMPT_TIME="\[\e[38;2;254;126;219m\]"
-# Mint
-#PROMPT_ARROW="\[\e[38;2;3;237;249m\]"
+# Lavender
+PROMPT_DIR="\[\e[38;2;210;221;239m\]"
+
+# Alice Blue
+PROMPT_TIME="\[\e[38;2;234;242;255m\]"
+
+# Lavender
+PROMPT_ARROW="\[\e[38;2;221;234;255m\]"
 
 set_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac

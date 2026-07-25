@@ -1,5 +1,5 @@
 # =================================================================================================
-# NECRONOMICON
+# TARTARUS
 # =================================================================================================
 
 # If not running interactively, don't do anything
@@ -33,17 +33,16 @@ fi
 # Bash Prompt
 # =================================================================================================
 
-# Colors from https://ansicolor.com/
+# Thebel
+PROMPT_FG="\[\e[38;2;130;175;120m\]"
+# Harabah
+PROMPT_USER="\[\e[38;2;114;71;58m\]"
+# Arqa
+PROMPT_DIR="\[\e[38;2;92;87;123m\]"
+# Yabbashah
+PROMPT_TIME="\[\e[38;2;94;161;148m\]"
+# Tziah
+PROMPT_ARROW="\[\e[38;2;187;190;133m\]"
 
-# Bamboo
-PROMPT_FG="\[\e[38;2;255;44;109m\]"
-# Sprout
-PROMPT_USER="\[\e[38;2;255;184;108m\]"
-# Honey
-PROMPT_DIR="\[\e[38;2;69;169;249m\]"
-# Blush
-PROMPT_TIME="\[\e[38;2;255;117;181m\]"
-# Sky
-PROMPT_ARROW="\[\e[38;2;25;249;216m\]"
 
 set_prompt
