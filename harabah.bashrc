@@ -50,9 +50,3 @@ PROMPT_ARROW="\[\e[38;2;240;6;153m\]"
 
 
 set_prompt
-
-#6a041d
-#f00699
-#1e2ede
-#53ff45
-#ffc914
