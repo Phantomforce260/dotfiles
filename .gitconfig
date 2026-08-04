@@ -13,5 +13,5 @@
 	insteadOf = gh:
 [url "https://github.com/Phantomforce260/"]
 	insteadOf = phantom:
-[url "ssh://git@ssh.git.lunarflame.dev:2222/"]
+[url "ssh://git@lunarflame.dev:2222/"]
 	insteadOf = lfs:
