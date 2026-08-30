@@ -1,0 +1,2 @@
+*.bashrc linguist-language=shell
+*.zshrc linguist-language=shell

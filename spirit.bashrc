@@ -10,10 +10,10 @@ esac
 
 # Source common aliases/config shared with zsh
 COMMON_DIR="$HOME/.config/dotfiles"
-[ -f "$COMMON_DIR/shell_common" ] && . "$COMMON_DIR/shell_common"
+[ -f "$COMMON_DIR/shell_common.sh" ] && . "$COMMON_DIR/shell_common.sh"
 
 # Source common bash config
-[ -f "$COMMON_DIR/bash_common" ] && . "$COMMON_DIR/bash_common"
+[ -f "$COMMON_DIR/bash_common.sh" ] && . "$COMMON_DIR/bash_common.sh"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"

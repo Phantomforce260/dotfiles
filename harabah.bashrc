@@ -10,10 +10,10 @@ esac
 
 # Source common aliases/config shared with zsh
 COMMON_DIR="$HOME/.config/dotfiles"
-[ -f "$COMMON_DIR/shell_common" ] && . "$COMMON_DIR/shell_common"
+[ -f "$COMMON_DIR/shell_common.sh" ] && . "$COMMON_DIR/shell_common.sh"
 
 # Source common bash config
-[ -f "$COMMON_DIR/bash_common" ] && . "$COMMON_DIR/bash_common"
+[ -f "$COMMON_DIR/bash_common.sh" ] && . "$COMMON_DIR/bash_common.sh"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -35,18 +35,13 @@ fi
 
 # Blood Red
 PROMPT_FG="\[\e[38;2;106;4;29m\]"
-
 # Warning Yellow
 PROMPT_USER="\[\e[38;2;255;201;20m\]"
-
 # Electric Blue
 PROMPT_DIR="\[\e[38;2;30;46;222m\]"
-
 # Nuclear Green
 PROMPT_TIME="\[\e[38;2;83;255;69m\]"
-
 # Hot Pink
 PROMPT_ARROW="\[\e[38;2;240;6;153m\]"
-
 
 set_prompt

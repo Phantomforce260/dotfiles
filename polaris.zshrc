@@ -2,7 +2,7 @@ export CONFIG="$HOME/.config"
 
 # Source common aliases/config shared with bash
 COMMON_DIR="$CONFIG/dotfiles"
-[ -f "$COMMON_DIR/shell_common" ] && . "$COMMON_DIR/shell_common"
+[ -f "$COMMON_DIR/shell_common.sh" ] && . "$COMMON_DIR/shell_common.sh"
 
 # =================================================================================================
 # ZSHRC
