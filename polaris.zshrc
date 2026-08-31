@@ -134,6 +134,8 @@ nvim() {
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
+export PYTHONPYCACHEPREFIX="$HOME/.cache/kitty-pyc"
+
 eval "$(zoxide init zsh)"
 
 # opencode
