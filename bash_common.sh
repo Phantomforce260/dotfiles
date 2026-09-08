@@ -38,10 +38,6 @@ esac
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# =================================================================================================
-# Aliases
-# =================================================================================================
-
 alias ff='fastfetch'
 alias neofetch='fastfetch'
 
@@ -56,6 +52,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+lzd_dir="$HOME/dockerfiles/tziah/lazydocker"
+alias lzd="docker compose --project-directory $lzd_dir -f $lzd_dir/docker-compose.yml run --rm lazydocker"
+
+lzg_dir="$HOME/dockerfiles/tziah/lazygit"
+lzg() {
+    local repo_root
+    repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || repo_root="$(pwd)"
+    docker compose --project-directory "$repo_root" -f $lzg_dir/docker-compose.yml run --rm lazygit
+}
 
 # =================================================================================================
 # Common colors

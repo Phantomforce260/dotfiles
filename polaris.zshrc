@@ -155,6 +155,8 @@ cargo() {
 # Aliases
 # =================================================================================================
 
+export DOCKERFILES="$HOME/Documents/Github/Phantom/dockerfiles"
+
 alias cd="z"
 alias cat="ccat"
 
@@ -179,15 +181,20 @@ alias disable-wg="sudo wg-quick down polaris"
 alias acli="arduino-cli"
 alias pkmn="pokemon-colorscripts"
 
-alias weather="$CONFIG/hypr/shell/user/Weather.sh"
-
 APP_IMAGES="$HOME/Documents/AppImages"
 
 alias edex="$APP_IMAGES/edex.AppImage --no-sandbox"
 alias prism="$APP_IMAGES/prism.AppImage & disown"
 
-alias intellij="$HOME/.intellij/bin/idea & disown"
-alias update-hwmon="bun $CONFIG/waybar/js/build.js"
+lzd_dir="$DOCKERFILES/tziah/lazydocker"
+alias lzd="docker compose --project-directory $lzd_dir -f $lzd_dir/docker-compose.yml run --rm lazydocker"
+
+lzg_dir="$DOCKERFILES/tziah/lazygit"
+lzg() {
+    local repo_root
+    repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || repo_root="$(pwd)"
+    docker compose --project-directory "$repo_root" -f $lzg_dir/docker-compose.yml run --rm lazygit
+}
 
 # =================================================================================================
 # Custom Scripts
