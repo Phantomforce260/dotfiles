@@ -27,3 +27,38 @@ alias bashrc='vim ~/.bashrc && source ~/.bashrc'
 
 export PATH="$PATH:$HOME/.config/git-tools/bash"
 export PATH="$PATH:$HOME/.local/bin"
+
+lzd() {
+    local lzd_dir="$DOCKERFILES/tziah/lazydocker"
+    docker compose --project-directory "$lzd_dir" -f "$lzd_dir/docker-compose.yml" run --rm lazydocker
+}
+
+lzg() {
+    local lzg_dir="$DOCKERFILES/tziah/lazygit"
+    local repo_root
+    repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || repo_root="$(pwd)"
+    docker compose --project-directory "$repo_root" -f "$lzg_dir/docker-compose.yml" run --rm lazygit
+}
+
+run_magick() {
+    local bin="$1"; shift
+    docker compose -f "$DOCKERFILES/tziah/magick/docker-compose.yml" run --rm -T \
+        -v "$PWD:/imgs" \
+        --entrypoint magick \
+        imagemagick "$@"
+}
+
+magick()    { run_magick "$@"; }
+
+convert()   { run_magick convert "$@"; }
+mogrify()   { run_magick mogrify   "$@"; }
+identify()  { run_magick identify  "$@"; }
+montage()   { run_magick montage   "$@"; }
+composite() { run_magick composite "$@"; }
+compare()   { run_magick compare   "$@"; }
+
+skopeo() {
+    docker compose -f "$DOCKERFILES/tziah/skopeo/docker-compose.yml" run --rm -T \
+        -v "$PWD:/work" -w /work \
+        skopeo "$@"
+}

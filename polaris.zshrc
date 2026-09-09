@@ -134,8 +134,6 @@ nvim() {
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
-export MODELS="$HOME/Documents/Models"
-
 export PYTHONPYCACHEPREFIX="$HOME/.cache/kitty-pyc"
 
 eval "$(zoxide init zsh)"
@@ -157,12 +155,14 @@ cargo() {
 # Aliases
 # =================================================================================================
 
+export MODELS="$HOME/Documents/Models"
 export DOCKERFILES="$HOME/Documents/Github/Phantom/dockerfiles"
 
 alias cd="z"
 alias cat="ccat"
 
 alias ssh="kitty +kitten ssh"
+alias icat="kitty +kitten icat"
 
 alias zshrc="nvim ~/.zshrc && clear && source ~/.zshrc"
 
@@ -187,16 +187,6 @@ APP_IMAGES="$HOME/Documents/AppImages"
 
 alias edex="$APP_IMAGES/edex.AppImage --no-sandbox"
 alias prism="$APP_IMAGES/prism.AppImage & disown"
-
-lzd_dir="$DOCKERFILES/tziah/lazydocker"
-alias lzd="docker compose --project-directory $lzd_dir -f $lzd_dir/docker-compose.yml run --rm lazydocker"
-
-lzg_dir="$DOCKERFILES/tziah/lazygit"
-lzg() {
-    local repo_root
-    repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || repo_root="$(pwd)"
-    docker compose --project-directory "$repo_root" -f $lzg_dir/docker-compose.yml run --rm lazygit
-}
 
 # =================================================================================================
 # Custom Scripts

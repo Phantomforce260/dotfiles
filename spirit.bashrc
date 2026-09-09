@@ -36,8 +36,6 @@ fi
 
 # Colors from https://ansicolor.com/
 
-# Colors from https://ansicolor.com/
-
 # Bamboo
 PROMPT_FG="\[\e[38;2;255;44;109m\]"
 # Sprout
