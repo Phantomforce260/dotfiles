@@ -134,6 +134,8 @@ nvim() {
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
+export MODELS="$HOME/Documents/Models"
+
 export PYTHONPYCACHEPREFIX="$HOME/.cache/kitty-pyc"
 
 eval "$(zoxide init zsh)"
@@ -283,6 +285,4 @@ empty-trash() {
     esac
 }
 
-fork() {
-    kitten @ launch --type=tab --cwd=current
-}
+alias fork="kitten @ launch --type=tab --cwd=current"
