@@ -35,10 +35,10 @@ esac
 # =================================================================================================
 
 export MODELS="$HOME/Models"
+export DOCKERFILES="$HOME/dockerfiles"
+
 export PSX="/mnt/psx"
 export HDD_MNTS="$PSX/necronomicon"
-
-export DOCKERFILES="$HOME/dockerfiles"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

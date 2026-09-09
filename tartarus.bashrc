@@ -124,7 +124,7 @@ case "$BLOCK_HOST" in
         # Lavender
         PROMPT_ARROW="\[\e[38;2;221;234;255m\]"
         ;;
-    tartarus)
+    necronomicon)
         # Thebel
         PROMPT_FG="\[\e[38;2;130;175;120m\]"
         # Harabah
