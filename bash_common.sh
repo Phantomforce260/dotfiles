@@ -37,7 +37,7 @@ esac
 export MODELS="$HOME/Models"
 export DOCKERFILES="$HOME/dockerfiles"
 
-export PSX="/mnt/psx"
+export PSX="/mnt/main"
 export HDD_MNTS="$PSX/necronomicon"
 
 # Add an "alert" alias for long running commands.  Use like so:
