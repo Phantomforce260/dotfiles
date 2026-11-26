@@ -13,7 +13,6 @@ alias dcd='docker compose down'
 
 # Python
 alias py='python3'
-alias venv="source venv/bin/activate"
 
 # LS
 alias l="ls -l"
@@ -27,6 +26,27 @@ alias bashrc='vim ~/.bashrc && source ~/.bashrc'
 
 export PATH="$PATH:$HOME/.config/git-tools/bash"
 export PATH="$PATH:$HOME/.local/bin"
+
+venv() {
+    if [ ! -d "./venv" ]; then 
+        while true; do
+            echo -n "venv not found in this directory. Create new venv? [y/N]:"
+            read -r response
+            case "$response" in
+                [Yy]* )
+                    python3 -m venv venv;
+                    echo "Created venv."
+                    source ./venv/bin/activate
+                    break ;;
+                "" | [Nn]* )
+                    echo "Abort."
+                    break ;;
+                * ) echo "Error: Invalid input [y/N]." ;;
+            esac
+        done
+    else source ./venv/bin/activate
+    fi
+}
 
 lzd() {
     local lzd_dir="$DOCKERFILES/tziah/lazydocker"
